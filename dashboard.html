@@ -15,30 +15,48 @@
       --text-dim: #94a3b8;
       --white: #f8fafc;
     }
-    
 @media (max-width: 768px) {
   body {
-    flex-direction: column; 
-    overflow-y: auto;
-    height: auto;
+    flex-direction: column !important; /* Sidebar ko upar aur content ko niche lane ke liye */
+    height: auto !important;
+    overflow-y: auto !important;
   }
-  .sidebar {
-    width: 100%;
-    padding: 20px;
-    border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .viewport {
-    padding: 20px;
-  }
-  .hero-center h1 {
-    font-size: 2.5rem; 
-  }
-  .grid {
-    grid-template-columns: 1fr; 
-  }
-} 
 
+  .sidebar {
+    width: 100% !important; /* Sidebar poori width lega */
+    height: auto !important;
+    padding: 30px 20px !important;
+    position: relative !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  }
+
+  .viewport {
+    width: 100% !important;
+    padding: 20px !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hero-center h1 {
+    font-size: 2.2rem !important; /* Mobile par naam fit karne ke liye */
+    margin-top: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important; /* Cards ab line mein aayenge */
+    gap: 15px !important;
+  }
+
+  .card-4d {
+    padding: 20px !important; /* Card ka size mobile ke mutabiq */
+  }
+
+  .summary-box {
+    padding: 25px !important;
+    font-size: 0.95rem !important;
+  }
+}
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
     body {
