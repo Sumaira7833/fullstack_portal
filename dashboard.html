@@ -38,7 +38,6 @@
       display: flex;
       flex-direction: column;
       z-index: 100;
-      transform: translateZ(30px);
     }
 
     .user-tag {
@@ -70,19 +69,13 @@
     .nav-btn:hover, .nav-btn.active {
       background: rgba(56, 189, 248, 0.1);
       color: var(--accent);
-      transform: translateZ(10px);
     }
 
     /* --- VIEWPORT --- */
-    .viewport { flex: 1; padding: 40px 60px; overflow-y: auto; transform-style: preserve-3d; scroll-behavior: smooth; }
+    .viewport { flex: 1; padding: 40px 60px; overflow-y: auto; scroll-behavior: smooth; }
 
     /* --- HERO CENTER --- */
-    .hero-center {
-      text-align: center;
-      margin: 60px 0 40px;
-      animation: float 6s ease-in-out infinite;
-    }
-
+    .hero-center { text-align: center; margin: 60px 0 40px; animation: float 6s ease-in-out infinite; }
     .hero-center h1 {
       font-size: 4.5rem;
       background: linear-gradient(to bottom, #fff 40%, var(--accent));
@@ -90,17 +83,16 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
     }
-
     .hero-center p { font-size: 1.3rem; color: var(--text-dim); font-weight: 300; }
 
     /* --- SECTIONS --- */
     .section { display: none; animation: enter 0.7s ease-out forwards; }
     .section.active { display: block; }
 
-    @keyframes enter { from { opacity: 0; transform: translateZ(-150px) translateY(20px); } to { opacity: 1; transform: translateZ(0) translateY(0); } }
+    @keyframes enter { from { opacity: 0; transform: translateZ(-100px); } to { opacity: 1; transform: translateZ(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 30px; }
     
     .card-4d {
       background: var(--card-glass);
@@ -108,14 +100,13 @@
       padding: 30px;
       border-radius: 24px;
       backdrop-filter: blur(15px);
-      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: 0.4s;
     }
 
-    .card-4d:hover { transform: translateZ(50px) scale(1.03); border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); }
-    
+    .card-4d:hover { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); transform: translateY(-5px); }
     .card-4d h3 { color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
     .card-4d p, .card-4d li { color: var(--text-dim); line-height: 1.6; font-size: 0.95rem; }
-    .card-4d ul { list-style: none; }
+    .card-4d ul { list-style: none; margin-top: 10px; }
     .card-4d li::before { content: "•"; color: var(--accent); margin-right: 8px; }
 
     .summary-box {
@@ -135,9 +126,10 @@
       background: rgba(56, 189, 248, 0.1);
       color: var(--accent);
       border-radius: 10px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
       margin-bottom: 15px;
+      text-transform: uppercase;
     }
   </style>
 </head>
@@ -146,15 +138,15 @@
 
   <aside class="sidebar">
     <div class="user-tag">
-      <p>User Session</p>
-      <h4 id="sidebar-user-name">Guest</h4>
+      <p>Current Session</p>
+      <h4 id="sidebar-user-name">Guest User</h4>
     </div>
 
     <nav style="flex: 1;">
-      <button class="nav-btn active" onclick="show(this, 'home')"><i data-lucide="home"></i> Home</button>
-      <button class="nav-btn" onclick="show(this, 'skills')"><i data-lucide="layers"></i> Skills</button>
+      <button class="nav-btn active" onclick="show(this, 'home')"><i data-lucide="home"></i> Dashboard</button>
+      <button class="nav-btn" onclick="show(this, 'skills')"><i data-lucide="wrench"></i> Skills & Tools</button>
+      <button class="nav-btn" onclick="show(this, 'projects')"><i data-lucide="folder-kanban"></i> Projects</button>
       <button class="nav-btn" onclick="show(this, 'experience')"><i data-lucide="briefcase"></i> Experience</button>
-      <button class="nav-btn" onclick="show(this, 'projects')"><i data-lucide="code"></i> Projects</button>
     </nav>
 
     <button class="nav-btn" style="color: #ef4444; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;" onclick="logout()">
@@ -171,32 +163,62 @@
       </div>
 
       <div class="summary-box">
-        <span class="badge">Executive Summary</span><br>
-        A highly motivated and dedicated final-semester Computer Science fresh graduate with practical experience in software development, testing, and academic projects. 
+        <span class="badge">Professional Summary</span><br>
+        Motivated final-semester Computer Science graduate with hands-on experience in software development, testing, and academic projects. Recently qualified HEC National IT Skills Competency Test (61.4%). Currently specializing in System Administration and IT Infrastructure under NAVTTC industrial guidelines.
       </div>
 
       <div class="grid">
         <div class="card-4d">
           <h3><i data-lucide="graduation-cap"></i> Education</h3>
-          <p>Bachelor of Science in Computer Science<br>Iqra University, Karachi<br>2021 — 2026</p>
+          <p><strong>Bachelor of Science in Computer Science</strong><br>Iqra University, Karachi<br>2021 — 2026</p>
         </div>
         <div class="card-4d">
           <h3><i data-lucide="award"></i> Certifications</h3>
-          <p>HEC National IT Skills Test: 61.4%<br>NAVTTC System Admin (In Progress)</p>
+          <p>• HEC IT Skills Test: 61.4%<br>• NAVTTC (In Progress): System Admin<br>• 10 Pearls: API Testing (Postman/JMeter)</p>
         </div>
       </div>
     </div>
 
     <div id="skills" class="section">
-      <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Core Competencies</h2>
+      <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Technical Stack</h2>
       <div class="grid">
         <div class="card-4d">
-          <h3>Technical Skills</h3>
+          <h3>Testing & QA</h3>
           <ul>
-            <li>Software Testing & QA</li>
-            <li>Web Development</li>
-            <li>Database Basics (SQL)</li>
+            <li>Software Testing & QA (Manual)</li>
+            <li>API Testing (Postman & JMeter)</li>
+            <li>Test Case Design & Bug Reporting</li>
           </ul>
+        </div>
+        <div class="card-4d">
+          <h3>Development & IT</h3>
+          <ul>
+            <li>Web Dev (HTML, CSS, React)</li>
+            <li>System Administration & Infrastructure</li>
+            <li>Database Management (SQL)</li>
+            <li>Version Control (Git)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="projects" class="section">
+      <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Selected Projects</h2>
+      <div class="grid">
+        <div class="card-4d">
+          <span class="badge">AI & Automation</span>
+          <h3>DeskBot</h3>
+          <p>Built a voice-controlled assistant to automate desktop tasks using speech recognition and basic AI.</p>
+        </div>
+        <div class="card-4d">
+          <span class="badge">Cybersecurity</span>
+          <h3>MITM Simulation</h3>
+          <p>Network security project analyzing vulnerabilities using Banana Pi and USB-based attack simulations.</p>
+        </div>
+        <div class="card-4d">
+          <span class="badge">Web App</span>
+          <h3>React Web Portal</h3>
+          <p>User Authentication system with registration, login, and robust input validation using React.</p>
         </div>
       </div>
     </div>
@@ -204,19 +226,14 @@
     <div id="experience" class="section">
       <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Professional History</h2>
       <div class="card-4d">
-        <span class="badge">2024</span>
+        <span class="badge">March 2024 — Sept 2024</span>
         <h3>Programmer Intern</h3>
-        <p><strong>SNJ Global Services</strong> | March - Sept 2024</p>
-      </div>
-    </div>
-
-    <div id="projects" class="section">
-      <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Projects</h2>
-      <div class="grid">
-        <div class="card-4d">
-          <h3>DeskBot</h3>
-          <p>AI-Based Desktop Assistant using speech recognition.</p>
-        </div>
+        <p><strong>SNJ Global Services</strong></p>
+        <ul>
+          <li>Developed and debugged production-ready code</li>
+          <li>Collaborated with cross-functional development teams</li>
+          <li>Applied SDLC and Agile practices in real-time environments</li>
+        </ul>
       </div>
     </div>
 
@@ -225,16 +242,13 @@
   <script>
     lucide.createIcons();
 
+    // DYNAMIC USERNAME
     window.onload = function() {
       const userEmail = localStorage.getItem("userEmail");
-
-      if (!userEmail) {
-        window.location.href = "index.html"; 
-        return;
+      if (userEmail) {
+        const name = userEmail.split('@')[0];
+        document.getElementById("sidebar-user-name").innerText = name.charAt(0).toUpperCase() + name.slice(1);
       }
-
-      const name = userEmail.split('@')[0];
-      document.getElementById("sidebar-user-name").innerText = name.charAt(0).toUpperCase() + name.slice(1);
     };
 
     function show(btn, id) {
@@ -244,10 +258,9 @@
       document.getElementById(id).classList.add("active");
     }
 
-    // 2. LOGOUT LOGIC (Redirecting to index.html)
     function logout() {
-      localStorage.removeItem("userEmail"); 
-      window.location.href = "index.html";
+      localStorage.removeItem("userEmail");
+      window.location.href = "index.html"; 
     }
   </script>
 </body>
